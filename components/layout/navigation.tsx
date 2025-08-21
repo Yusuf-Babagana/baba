@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
-import { sectorConfigs } from '@/lib/sector-config';
 import { Button } from '@/components/ui/button';
 import { Shield, Search, Eye, Home } from 'lucide-react';
 
@@ -33,8 +32,6 @@ export function Navigation() {
           <div className="hidden md:flex items-center space-x-1">
             {navigationItems.map((item) => {
               const isActive = pathname === item.href;
-              const IconComponent = typeof item.icon === 'string' ? null : item.icon;
-              
               return (
                 <Button
                   key={item.href}
@@ -47,7 +44,7 @@ export function Navigation() {
                     {typeof item.icon === 'string' ? (
                       <span className="text-lg">{item.icon}</span>
                     ) : (
-                      <IconComponent className="w-4 h-4" />
+                      <item.icon className="w-4 h-4" />
                     )}
                     <span>{item.label}</span>
                   </Link>
